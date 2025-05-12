@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حاسبة سعر الذهب</title>
+  <style>
+    /* الأساسيات */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      margin: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      background: #f8f8f8;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+    }
+
+    /* لضمان الاستجابة عبر الشاشات المختلفة */
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+
+      input, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>حاسبة سعر الذهب</h2>
+  
+  <label>سعر أونصة الذهب (بالدولار):</label>
+  <input type="number" id="ounce" placeholder="مثلاً: 3220">
+  
+  <label>سعر الدولار في السوق السوداء (دينار جزائري):</label>
+  <input type="number" id="dollar" placeholder="مثلاً: 250">
+  
+  <button onclick="calculate()">احسب السعر</button>
+  
+  <div id="output" class="result"></div>
+</div>
+
+<script>
+  function calculate() {
+    const ounce = parseFloat(document.getElementById("ounce").value);
+    const dollar = parseFloat(document.getElementById("dollar").value);
+    const gram24USD = ounce / 31.1035;
+    const gram24DZD = gram24USD * dollar;
+
+    const prices = {
+      "عيار 24": gram24DZD,
+      "عيار 22": gram24DZD * (22/24),
+      "عيار 21": gram24DZD * (21/24),
+      "عيار 18": gram24DZD * (18/24),
+    };
+
+    let result = "";
+    for (let key in prices) {
+      result += `${key}: ${Math.round(prices[key]).toLocaleString()} دينار جزائري<br>`;
+    }
+
+    document.getElementById("output").innerHTML = result;
+  }
+</script>
+
+</body>
+</html>
