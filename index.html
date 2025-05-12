@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>حاسبة سعر الذهب</title>
   <style>
-    /* الأساسيات */
     body {
       font-family: 'Arial', sans-serif;
       background: #f4f4f4;
@@ -17,7 +16,7 @@
       align-items: center;
       height: 100vh;
     }
-    
+
     .container {
       background: white;
       padding: 20px;
@@ -78,7 +77,13 @@
       text-align: center;
     }
 
-    /* لضمان الاستجابة عبر الشاشات المختلفة */
+    .note {
+      font-size: 14px;
+      color: #777;
+      margin-top: 10px;
+      text-align: center;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 15px;
@@ -109,6 +114,7 @@
   <button onclick="calculate()">احسب السعر</button>
   
   <div id="output" class="result"></div>
+  <div class="note">تنبيه: الأسعار المعروضة تقريبية تخص الذهب الجديد الخام، أما الذهب المستعمل أو القديم فعادة ما يكون سعره أقل.</div>
 </div>
 
 <script>
